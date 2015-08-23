@@ -10,16 +10,45 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var billField: UITextField!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var tipControl: UISegmentedControl!
+
+    @IBAction func onEditingChanged(sender: AnyObject) {
+        maybeTruncateBillField()
+        
+        let tipPercentages = [0.18, 0.2, 0.22]
+        let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        
+        let billAmount = (billField.text as! NSString).doubleValue
+        let roundedBillAmount = Double(round(billAmount * 100) / 100)
+        let tip = Double(round(roundedBillAmount * tipPercentage * 100) / 100);
+        let total = billAmount + tip;
+        
+        tipLabel.text = String(format: "$%.2f", arguments: [tip])
+        totalLabel.text = String(format: "$%.2f", arguments: [total])
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func maybeTruncateBillField() {
+        let billAmountArray = billField.text!.characters.split { $0 == "." }.map { String($0) }
+        if billAmountArray.count < 2 {
+            return
+        } else {
+            let dollars = billAmountArray[0]
+            var cents = billAmountArray[1]
+            if cents.characters.count > 2 {
+                let centsIndex = advance(cents.startIndex, 2)
+                cents = cents.substringToIndex(centsIndex)
+            }
+            let totalValue = ".".join([dollars, cents])
+            billField.text = totalValue
+        }
+        
     }
 
-
+    @IBAction func onTap(sender: AnyObject) {
+        view.endEditing(true)
+    }
 }
 
