@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        if let prefsBundle = NSBundle.mainBundle().pathForResource("TipDefaults", ofType: "plist") {
+            let dict = NSDictionary(contentsOfFile: prefsBundle)
+            NSUserDefaults.standardUserDefaults().registerDefaults(dict as! [String: AnyObject])
+        }
+        
         return true
     }
 

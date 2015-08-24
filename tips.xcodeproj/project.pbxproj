@@ -15,6 +15,7 @@
 		226856511B8A5241005530AF /* tipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226856501B8A5241005530AF /* tipsTests.swift */; };
 		2268565C1B8A5241005530AF /* tipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268565B1B8A5241005530AF /* tipsUITests.swift */; };
 		226856701B8A9D5B005530AF /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268566F1B8A9D5B005530AF /* SettingsController.swift */; };
+		226A1B731B8AAF5E00076B62 /* TipDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 226A1B721B8AAF5E00076B62 /* TipDefaults.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2268565B1B8A5241005530AF /* tipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tipsUITests.swift; sourceTree = "<group>"; };
 		2268565D1B8A5241005530AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2268566F1B8A9D5B005530AF /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		226A1B721B8AAF5E00076B62 /* TipDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TipDefaults.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				226856421B8A5241005530AF /* Assets.xcassets */,
 				226856441B8A5241005530AF /* LaunchScreen.storyboard */,
 				226856471B8A5241005530AF /* Info.plist */,
+				226A1B721B8AAF5E00076B62 /* TipDefaults.plist */,
 			);
 			path = tips;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			files = (
 				226856461B8A5241005530AF /* LaunchScreen.storyboard in Resources */,
 				226856431B8A5241005530AF /* Assets.xcassets in Resources */,
+				226A1B731B8AAF5E00076B62 /* TipDefaults.plist in Resources */,
 				226856411B8A5241005530AF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +489,7 @@
 				226856621B8A5241005530AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		226856631B8A5241005530AF /* Build configuration list for PBXNativeTarget "tipsTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +498,7 @@
 				226856651B8A5241005530AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		226856661B8A5241005530AF /* Build configuration list for PBXNativeTarget "tipsUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +507,7 @@
 				226856681B8A5241005530AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
