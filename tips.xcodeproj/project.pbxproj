@@ -14,6 +14,7 @@
 		226856461B8A5241005530AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226856441B8A5241005530AF /* LaunchScreen.storyboard */; };
 		226856511B8A5241005530AF /* tipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226856501B8A5241005530AF /* tipsTests.swift */; };
 		2268565C1B8A5241005530AF /* tipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268565B1B8A5241005530AF /* tipsUITests.swift */; };
+		226856701B8A9D5B005530AF /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268566F1B8A9D5B005530AF /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		226856571B8A5241005530AF /* tipsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tipsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2268565B1B8A5241005530AF /* tipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tipsUITests.swift; sourceTree = "<group>"; };
 		2268565D1B8A5241005530AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2268566F1B8A9D5B005530AF /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				2268563B1B8A5241005530AF /* AppDelegate.swift */,
 				2268563D1B8A5241005530AF /* ViewController.swift */,
+				2268566F1B8A9D5B005530AF /* SettingsController.swift */,
 				2268563F1B8A5241005530AF /* Main.storyboard */,
 				226856421B8A5241005530AF /* Assets.xcassets */,
 				226856441B8A5241005530AF /* LaunchScreen.storyboard */,
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226856701B8A9D5B005530AF /* SettingsController.swift in Sources */,
 				2268563E1B8A5241005530AF /* ViewController.swift in Sources */,
 				2268563C1B8A5241005530AF /* AppDelegate.swift in Sources */,
 			);
