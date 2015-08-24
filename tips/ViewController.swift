@@ -21,11 +21,13 @@ class ViewController: UIViewController {
         let tipPercentages = [0.18, 0.2, 0.22]
         let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
         
-        let billAmount = (billField.text as! NSString).doubleValue
+        let billAmountText = billField.text!.stringByReplacingOccurrencesOfString("$", withString: "")
+        let billAmount = (billAmountText as NSString).doubleValue
         let roundedBillAmount = Double(round(billAmount * 100) / 100)
         let tip = Double(round(roundedBillAmount * tipPercentage * 100) / 100);
         let total = billAmount + tip;
         
+        billField.text = "$\(billAmountText)"
         tipLabel.text = String(format: "$%.2f", arguments: [tip])
         totalLabel.text = String(format: "$%.2f", arguments: [total])
     }
