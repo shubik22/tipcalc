@@ -23,6 +23,11 @@ class ViewController: UIViewController {
     var highTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("highTip")
     var tips:Array<Double> = []
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        billField.becomeFirstResponder()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         setTipAmounts()
@@ -49,19 +54,29 @@ class ViewController: UIViewController {
     func setViewPositions() {
         let billAmountText = billField.text!
         if billAmountText.characters.count > 1 {
-            UIView.animateWithDuration(0.2, animations: {
-                self.billField.center.y = self.billFieldTopCenter
-            })
-            UIView.animateWithDuration(0.5, animations: {
-                self.tipAndTotalView.hidden = false
-            })
+            UIView.animateWithDuration(0.3,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0.5,
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: {
+                    let float:CGFloat = 1.0
+                    self.tipAndTotalView.alpha = CGFloat(float)
+                    self.billField.center.y = self.billFieldTopCenter
+                },
+                completion: nil)
         } else {
-            UIView.animateWithDuration(0.2, animations: {
-                self.billField.center.y = self.billFieldBottomCenter
-            })
-            UIView.animateWithDuration(0.5, animations: {
-                self.tipAndTotalView.hidden = true
-            })
+            UIView.animateWithDuration(0.3,
+                delay: 0,
+                usingSpringWithDamping: 1,
+                initialSpringVelocity: 0.5,
+                options: UIViewAnimationOptions.CurveEaseIn,
+                animations: {
+                    let float:CGFloat = 0.0
+                    self.tipAndTotalView.alpha = CGFloat(float)
+                    self.billField.center.y = self.billFieldBottomCenter
+                },
+                completion: nil)
         }
     }
     
