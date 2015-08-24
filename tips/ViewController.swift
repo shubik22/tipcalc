@@ -18,13 +18,13 @@ class ViewController: UIViewController {
     
     let billFieldTopCenter = CGFloat.init(105.0)
     let billFieldBottomCenter = CGFloat.init(250.0)
-    var lowTip:Double = 0.15
-    var middleTip:Double = 0.20
-    var highTip:Double = 0.25
+    var lowTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("lowTip")
+    var middleTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("middleTip")
+    var highTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("highTip")
     var tips:Array<Double> = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         setTipAmounts()
         updateAmounts()
     }
