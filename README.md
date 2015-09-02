@@ -10,6 +10,7 @@ Completed:
 * Required: Settings page to change the default tip percentage.
 * Optional: UI animations
 * Optional: Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+* Optional: Save the bill amount if it was entered less than 10 minutes ago
 
 ![Video Walkthrough](tipcalc.gif)
 

@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     let billFieldTopCenter = CGFloat.init(105.0)
     let billFieldBottomCenter = CGFloat.init(250.0)
+    let maxSecondsToSaveBillAmount = 10.0 * 60
     var lowTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("lowTip")
     var middleTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("middleTip")
     var highTip:Double = NSUserDefaults.standardUserDefaults().doubleForKey("highTip")
@@ -27,13 +28,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         billField.becomeFirstResponder()
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         setTipAmounts()
         updateAmounts()
+        maybeRetrieveSavedBillAmount()
+        setViewPositions()
     }
-    
+
     func setTipAmounts() {
         lowTip = NSUserDefaults.standardUserDefaults().doubleForKey("lowTip")
         middleTip = NSUserDefaults.standardUserDefaults().doubleForKey("middleTip")
@@ -49,8 +52,9 @@ class ViewController: UIViewController {
         setViewPositions()
         maybeTruncateBillField()
         updateAmounts()
+        saveBillAmount()
     }
-    
+
     func setViewPositions() {
         let billAmountText = billField.text!
         if billAmountText.characters.count > 1 {
@@ -79,7 +83,7 @@ class ViewController: UIViewController {
                 completion: nil)
         }
     }
-    
+
     func maybeTruncateBillField() {
         let billAmountArray = billField.text!.characters.split { $0 == "." }.map { String($0) }
         if billAmountArray.count < 2 {
@@ -95,25 +99,45 @@ class ViewController: UIViewController {
             billField.text = totalValue
         }
     }
-    
+
     func updateAmounts() {
-        let tipPercentage = tips[tipControl.selectedSegmentIndex]
-        
         let billAmountText = billField.text!.stringByReplacingOccurrencesOfString("$", withString: "")
+        updateAmountsWithBillAmount(billAmountText)
+    }
+
+    func updateAmountsWithBillAmount(billAmountText: String) {
         let billAmount = (billAmountText as NSString).doubleValue
+        let tipPercentage = tips[tipControl.selectedSegmentIndex]
         let roundedBillAmount = Double(round(billAmount * 100) / 100)
         let tip = Double(round(roundedBillAmount * tipPercentage * 100) / 100);
-        let total = billAmount + tip;
+        let total = billAmount + tip
         
         billField.text = "$\(billAmountText)"
         tipLabel.text = String(format: "$%.2f", arguments: [tip])
         totalLabel.text = String(format: "$%.2f", arguments: [total])
     }
-    
+
     func doubleToPercentage(num: Double) -> String {
         let nf = NSNumberFormatter()
         nf.numberStyle = NSNumberFormatterStyle.PercentStyle
         return nf.stringFromNumber(num)!
+    }
+
+    func saveBillAmount() {
+        let billAmountText = billField.text!.stringByReplacingOccurrencesOfString("$", withString: "")
+        let defaults = NSUserDefaults.standardUserDefaults();
+        defaults.setObject(billAmountText as NSString, forKey: "billAmountText")
+        defaults.setObject(NSDate.init(), forKey: "billAmountLastUpdated")
+    }
+
+    func maybeRetrieveSavedBillAmount() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let billAmountText = defaults.objectForKey("billAmountText") {
+            let lastUpdated = defaults.objectForKey("billAmountLastUpdated") as! NSDate
+            if lastUpdated.timeIntervalSinceNow > -1 * self.maxSecondsToSaveBillAmount {
+                updateAmountsWithBillAmount(billAmountText as! String)
+            }
+        }
     }
 
     @IBAction func onTap(sender: AnyObject) {
